@@ -1,0 +1,3 @@
+0,9171 Linnie Spring,49,4,,Bahrain,Lake Vergieside,1|
+1,639 Schuppe Fords,143,2,5,Libyan Arab Jamahiriya,West Edgarfurt,1|
+2,73383 Carlotta Ville,70,1,,Venezuela,Jacobsfort,9|

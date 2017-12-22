@@ -1,0 +1,26 @@
+{
+  "name": "inventoryservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "Michael Neveu",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "faker": "^4.1.0",
+    "fs": "0.0.1-security",
+    "mysql": "^2.15.0",
+    "node": "^9.3.0",
+    "pure-uuid": "^1.4.11",
+    "uniqid": "^4.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.13.3"
+  }
+}
