@@ -8,8 +8,8 @@ fs.truncate('./inventoryidData.txt', 0, function(){console.log('inventoryidData 
 const sessionGenerator = require('./dataGenerator1.js');
 
 
-var createThisManyListings = 3;
-var createThisManyUsers = ((createThisManyListings * 4) + 1);
+var createThisManyListings = 1000;
+var createThisManyUsers = ((createThisManyListings * 20) + 1);
 var createThisManyBookings = createThisManyListings; 
 
 
@@ -55,26 +55,26 @@ listingsStream.once('open', (fd) => {
 });
 
 
-var bookingsStream = fs.createWriteStream("bookingsData.txt", {'flags': 'a', 'encoding': null, 'mode': 0666});
-console.log('\x1b[0m' + 'BOOKINGS start');
-bookingsStream.once('open', (fd) => {
+// var bookingsStream = fs.createWriteStream("bookingsData.txt", {'flags': 'a', 'encoding': null, 'mode': 0666});
+// console.log('\x1b[0m' + 'BOOKINGS start');
+// bookingsStream.once('open', (fd) => {
 
-    var bookingID;
-    for (var listingID = 0; listingID < createThisManyBookings; listingID++) {
-      var makeNewReset = false;
-      for (var bookingCount = 0; bookingCount < 164; bookingCount++) {
-        if (listingID % 100000 === 0) {
-          console.log(listingID);
-        }
-        bookingID = listingID * 1000 + bookingCount;
-        if (bookingCount === 163) { makeNewReset = true; }
-        bookingsStream.write(sessionGenerator.bookingsGenerator(listingID, bookingID, createThisManyUsers, makeNewReset) + '|' + '\n');
-      }
-    }
+//     var bookingID;
+//     for (var listingID = 0; listingID < createThisManyBookings; listingID++) {
+//       var makeNewReset = false;
+//       for (var bookingCount = 0; bookingCount < 164; bookingCount++) {
+//         if (listingID % 100000 === 0) {
+//           console.log(listingID);
+//         }
+//         bookingID = listingID * 1000 + bookingCount;
+//         if (bookingCount === 163) { makeNewReset = true; }
+//         bookingsStream.write(sessionGenerator.bookingsGenerator(listingID, bookingID, createThisManyUsers, makeNewReset) + '|' + '\n');
+//       }
+//     }
   
-    bookingsStream.end();
-    console.log('BOOKINGS done');
-});
+//     bookingsStream.end();
+//     console.log('BOOKINGS done');
+// });
 
 
 

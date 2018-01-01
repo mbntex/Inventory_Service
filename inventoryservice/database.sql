@@ -26,12 +26,12 @@ CREATE TABLE users (
 
 CREATE TABLE listings (
   listing_uuid                       INT            NOT NULL,
-  address                            VARCHAR(60),
+  address                            VARCHAR(65),
   listing_price                      INT,
   number_of_rooms                    INT,
   photo_accuracy_rating              INT        DEFAULT NULL,
-  country_id                         VARCHAR(40),
-  city_id                            VARCHAR(40),    
+  country_id                         VARCHAR(50),
+  city_id                            VARCHAR(45),    
   user_id                            INT,
   PRIMARY KEY (listing_uuid),
   -- FOREIGN KEY (city_id) REFERENCES city(city_id),
@@ -82,26 +82,26 @@ CREATE TABLE total_inventory (
   D2018_01_07 INT DEFAULT NULL,
   D2018_01_08 INT DEFAULT NULL,
   D2018_01_09 INT DEFAULT NULL,
-  D2018_01_10 INT DEFAULT NULL
+  D2018_01_10 INT DEFAULT NULL,
+  D2018_01_11 INT DEFAULT NULL,
+  D2018_01_12 INT DEFAULT NULL,
+  D2018_01_13 INT DEFAULT NULL,
+  D2018_01_14 INT DEFAULT NULL,
+  D2018_01_15 INT DEFAULT NULL,
+  D2018_01_16 INT DEFAULT NULL,
+  D2018_01_17 INT DEFAULT NULL,
+  D2018_01_18 INT DEFAULT NULL,
+  D2018_01_19 INT DEFAULT NULL,
+  D2018_01_20 INT DEFAULT NULL,
+  D2018_01_21 INT DEFAULT NULL,
+  D2018_01_22 INT DEFAULT NULL,
+  D2018_01_23 INT DEFAULT NULL,
+  D2018_01_24 INT DEFAULT NULL,
+  D2018_01_25 INT DEFAULT NULL,
+  D2018_01_26 INT DEFAULT NULL,
+  D2018_01_27 INT DEFAULT NULL
   -- -- NOTE COMMA!!!!!!
-  
-  -- D2018_01_11 INT DEFAULT NULL,
-  -- D2018_01_12 INT DEFAULT NULL,
-  -- D2018_01_13 INT DEFAULT NULL,
-  -- D2018_01_14 INT DEFAULT NULL,
-  -- D2018_01_15 INT DEFAULT NULL,
-  -- D2018_01_16 INT DEFAULT NULL,
-  -- D2018_01_17 INT DEFAULT NULL,
-  -- D2018_01_18 INT DEFAULT NULL,
-  -- D2018_01_19 INT DEFAULT NULL,
-  -- D2018_01_20 INT DEFAULT NULL,
-  -- D2018_01_21 INT DEFAULT NULL,
-  -- D2018_01_22 INT DEFAULT NULL,
-  -- D2018_01_23 INT DEFAULT NULL,
-  -- D2018_01_24 INT DEFAULT NULL,
-  -- D2018_01_25 INT DEFAULT NULL,
-  -- D2018_01_26 INT DEFAULT NULL,
-  -- D2018_01_27 INT DEFAULT NULL,
+
   -- D2018_01_28 INT DEFAULT NULL,
   -- D2018_01_29 INT DEFAULT NULL,
   -- D2018_01_30 INT DEFAULT NULL,
@@ -461,48 +461,50 @@ CREATE TABLE total_inventory (
 -- INSERT INTO city (city) VALUES ('Berlin');
 -- INSERT INTO city (city) VALUES ('Hamburg');
 
-INSERT INTO users (user_id) VALUES (111);
-INSERT INTO users (user_id) VALUES (222);
-INSERT INTO users (user_id) VALUES (333);
-INSERT INTO users (user_id) VALUES (444);
-INSERT INTO users (user_id) VALUES (555);
-INSERT INTO users (user_id) VALUES (666);
-INSERT INTO users (user_id) VALUES (777);
-INSERT INTO users (user_id) VALUES (888);
-INSERT INTO users (user_id) VALUES (999);
+
+-- -- -- UNCOMMENT BELOW FOR RECENT TESTS
+-- INSERT INTO users (user_id) VALUES (111);
+-- INSERT INTO users (user_id) VALUES (222);
+-- INSERT INTO users (user_id) VALUES (333);
+-- INSERT INTO users (user_id) VALUES (444);
+-- INSERT INTO users (user_id) VALUES (555);
+-- INSERT INTO users (user_id) VALUES (666);
+-- INSERT INTO users (user_id) VALUES (777);
+-- INSERT INTO users (user_id) VALUES (888);
+-- INSERT INTO users (user_id) VALUES (999);
 
 
-INSERT INTO listings (listing_uuid, address,          listing_price, number_of_rooms, photo_accuracy_rating, country_id, city_id,             user_id) 
-VALUES               (100001,       '123 Oak Rd.',    101,           2,               3,                      'USA',     'San Francisco',      444),
-                     (100002,       '124 Elm Rd.',    200,           3,               null,                   'USA',     'New York',           999),
-                     (100003,       '124 Pine Ln.',   80,            3,               5,                      'USA',     'Denver',             111),
-                     (100004,       '8 Bird Ln.',     100,           4,               4,                      'USA',     'Dallas',             111),
-                     (100005,       '3 Sand St.',     180,           3,               5,                      'USA',     'Seatlle',            111);
+-- INSERT INTO listings (listing_uuid, address,          listing_price, number_of_rooms, photo_accuracy_rating, country_id, city_id,             user_id) 
+-- VALUES               (100001,       '123 Oak Rd.',    101,           2,               3,                      'USA',     'San Francisco',      444),
+--                      (100002,       '124 Elm Rd.',    200,           3,               null,                   'USA',     'New York',           999),
+--                      (100003,       '124 Pine Ln.',   80,            3,               5,                      'USA',     'Denver',             111),
+--                      (100004,       '8 Bird Ln.',     100,           4,               4,                      'USA',     'Dallas',             111),
+--                      (100005,       '3 Sand St.',     180,           3,               5,                      'USA',     'Seatlle',            111);
   
 
 
 
-INSERT INTO bookings (booking_uuid, booking_created_at,           booking_start, booking_end,      booking_length, booking_cost_per_night, booking_total_cost, listing_uuid, photo_accuracy_rating, user_id)
-VALUES               (2222222,      '2018-01-01 07:01:01',        '2018-02-01',   '2018-02-07',    6,                  101,                606,                100002,        4,                   555),                      
-                     (2222221,      '2018-01-02 07:01:01',        '2018-02-09',   '2018-02-12',    3,                  98,                 294,                100002,        5,                   888),   
-                     (2222223,      '2018-01-04 07:01:01',        '2018-02-13',   '2018-02-14',    1,                  101,                101,                100004,        2,                   222),   
-                     (2222224,      '2018-01-03 07:01:01',        '2018-01-28',   '2018-02-07',    10,                 110,                1100,               100001,        NULL,                333);  
+-- INSERT INTO bookings (booking_uuid, booking_created_at,           booking_start, booking_end,      booking_length, booking_cost_per_night, booking_total_cost, listing_uuid, photo_accuracy_rating, user_id)
+-- VALUES               (2222222,      '2018-01-01 07:01:01',        '2018-02-01',   '2018-02-07',    6,                  101,                606,                100002,        4,                   555),                      
+--                      (2222221,      '2018-01-02 07:01:01',        '2018-02-09',   '2018-02-12',    3,                  98,                 294,                100002,        5,                   888),   
+--                      (2222223,      '2018-01-04 07:01:01',        '2018-02-13',   '2018-02-14',    1,                  101,                101,                100004,        2,                   222),   
+--                      (2222224,      '2018-01-03 07:01:01',        '2018-01-28',   '2018-02-07',    10,                 110,                1100,               100001,        NULL,                333);  
 
 
-INSERT INTO photos (listing_uuid, photo) 
-VALUES      (100001, 'http://sadfasdfsdsa/asdfsdafsdsfd.com'),
-            (100001, 'http://sadfasdfsdsa/sdfvvfg gf.com'),
-            (100002, 'http://sadfasdfsdsa/asdfsdafsdsfd.com'),
-            (100001, 'http://sadfasdfsdsa/vsfg4vbgd.com');
+-- INSERT INTO photos (listing_uuid, photo) 
+-- VALUES      (100001, 'http://sadfasdfsdsa/asdfsdafsdsfd.com'),
+--             (100001, 'http://sadfasdfsdsa/sdfvvfg gf.com'),
+--             (100002, 'http://sadfasdfsdsa/asdfsdafsdsfd.com'),
+--             (100001, 'http://sadfasdfsdsa/vsfg4vbgd.com');
 
 
 
-INSERT INTO total_inventory (listing_uuid) 
-VALUES       (100001),
-             (100002),
-             (100003),
-             (100004),
-             (100005);
+-- INSERT INTO total_inventory (listing_uuid) 
+-- VALUES       (100001),
+--              (100002),
+--              (100003),
+--              (100004),
+--              (100005);
 
 
 

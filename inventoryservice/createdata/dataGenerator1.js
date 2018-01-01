@@ -30,7 +30,7 @@ var listingsGenerator = function(j, userIdMax) {
   } else {
     photo_accuracy_rating = photo_accuracy_rating; 
   };
-  country_id = faker.address.country();
+  country_id = faker.address.country().substring(0, 8);;
   city_id = faker.address.city();
   user_id = Math.ceil(Math.random() * (userIdMax -1));
   return listing_uuid +','+ address +','+ listing_price +','+ number_of_rooms +','+ photo_accuracy_rating +','+ country_id +','+ city_id +','+ user_id;
