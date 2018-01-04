@@ -1,5 +1,6 @@
 require('newrelic');
 
+
 // Add this to the VERY top of the first file loaded in your app
 var apm = require('elastic-apm-node').start({
   // Set required app name (allowed characters: a-z, A-Z, 0-9, -, _, and space)
@@ -13,6 +14,8 @@ var apm = require('elastic-apm-node').start({
 
 
 
+ //setInterval(()=> {console.log('SERVER SETINTERVAL RAN!!!')} , 5000);
+
 var express = require('express');
 var axios = require('axios');
 const app = express();
@@ -22,6 +25,8 @@ var bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(apm.middleware.connect())
 
 app.get('/', function(req, res){
   res.send('Hello Michael, The Inventory Server Is Live');
@@ -48,16 +53,21 @@ app.post('/inventory/addListings', function(req, res){
 });
 
 
-
+var counter = 0;
+setInterval(()=>{ 
+  console.log('counter = ', counter);
+  dB.uploadTxtFile(()=> { console.log('text files uploaded'); })
+  counter ++;
+}, 4000)
 app.post('/inventory/bookings', function(req, res){
-  console.log('addBooking Post received! BODY = ', req.body);
-  //axios
+  // console.log('addBooking Post received! BODY = ', req.body);
   //get object from johnny
   //update relevant bookings SET
   //when complete, notify cliff at events at /events/updated_bookings
   // dB.testSaveName(11223344, function() { console.log('Saved User ID!'); res.send('Saved User ID!')});
 
-  console.log('bookings Post received! BODY = ', req.body);
+  // console.log('bookings Post received! BODY = ', req.body);
+
   var newBooking = req.body;
   dB.addBooking(newBooking, ()=>{ res.send() });
 
@@ -73,7 +83,6 @@ app.post('/inventory/bookings', function(req, res){
 
 
 app.post('/inventory/test', function(req, res){
-  //axios
   //get object from johnny
   //update relevant bookings SET
   //when complete, notify cliff at events at /events/updated_bookings
@@ -82,19 +91,29 @@ app.post('/inventory/test', function(req, res){
 });
 
 
+var count = 0;
+
 app.get('/inventory/new_listings_request', function(req, res){
-  //axios
   //send new listings to client relevant searchinfo only to which endpoint? -- confirm this
   //when complete, notify cliff at events service at /events/new_listing 
+  
+  console.log('COUNT123 =' , count);
+  count ++;
   res.send('tested');
 
 });
 
-// axios.get('/test123')
-// .then((res)=>{ res.send('GOTTEN!') })
-// .catch((error)=> { console.log('ERROR') });
+app.get('/reset', function(req, res){
+  dB.reset(()=>{ res.send('reset') });
+  //res.send('reset');
+});
 
 
+app.get('/readtesturl', function(req, res){
+  //dB.readtest((data)=>{ res.send(data) });
+  dB.readtest(()=>{ res.send('tested read query') });
+  //res.send('tested');
+});
 
 const server = app.listen(7331, function() {
   const host = server.address().address;

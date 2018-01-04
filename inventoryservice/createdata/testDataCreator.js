@@ -8,7 +8,7 @@ fs.truncate('./inventoryidData.txt', 0, function(){console.log('inventoryidData 
 const sessionGenerator = require('./dataGenerator1.js');
 
 
-var createThisManyListings = 1000;
+var createThisManyListings = 65000;
 var createThisManyUsers = ((createThisManyListings * 20) + 1);
 var createThisManyBookings = createThisManyListings; 
 

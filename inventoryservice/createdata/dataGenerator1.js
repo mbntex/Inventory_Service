@@ -53,7 +53,7 @@ var listinguuid;
   if (makeNewReset === true) { m = 1; d = 1;};
   for (m; m < 13; m++ ) {
   // if (m === 12 && d > 28) { m = 1; d = 1; break; }
-    for (d; d < 30; d++) {
+    for (d; d < 29; d++) {
  // if (newListingTime === true) { m = 1; d = 1; break;}
 
       
