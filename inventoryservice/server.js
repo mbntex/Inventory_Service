@@ -1,5 +1,6 @@
 require('newrelic');
-
+require('dotenv').config();
+//process.env.NODE_ENV = 'production';
 
 // // Add this to the VERY top of the first file loaded in your app
 // var apm = require('elastic-apm-node').start({
