@@ -6,8 +6,8 @@ config:
     #   arrivalRate: 1
     # - duration: 20
     #   arrivalRate: 20
-      - duration: 2
-        arrivalRate: 10
+      - duration: 10
+        arrivalRate: 200
   processor: "./my-functions.js"
 
 scenarios:

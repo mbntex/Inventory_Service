@@ -52,10 +52,10 @@ var addBooking = function (obj, callback) {
   };
   var daysToBookArrayUse = dateListMaker(obj.booking_start, obj.booking_length);
 
-  var bookingsStream = fs.createWriteStream("bookingbuffer.txt", {'flags': 'a', 'encoding': null, 'mode': 0666});
+  //var bookingsStream = fs.createWriteStream("bookingbuffer.txt", {'flags': 'a', 'encoding': null, 'mode': 0666});
     fs.appendFile("bookingbuffer.txt", `${obj.booking_uuid},${obj.booking_created_at},${obj.booking_start},${obj.booking_end},${obj.booking_length},${obj.booking_cost_per_night},${obj.booking_total_cost},${obj.listing_uuid},${obj.photo_accuracy_rating},${obj.user_id}|\n` , (err) => {
       if (err) { console.log('ERROR APPENDING FILE to bookingbuffer!')}
-      console.log('The "data to append" was appended to bookingbuffer!');
+      //console.log('The "data to append" was appended to bookingbuffer!');
     });
     fs.appendFile("daysbookingjoinbuffer.txt", `${obj.listing_uuid},${daysToBookArrayUse[0]}|\n${obj.listing_uuid},${daysToBookArrayUse[1]}|\n`, 
       (err) => {
@@ -66,25 +66,26 @@ var addBooking = function (obj, callback) {
 
 }
 
-// var uploadTxtFile = function(file, callback) {
+var uploadTxtFile = function(file1, file2, callback) {
 
-//   connection.query(
-//   `START TRANSACTION;
-//   LOAD DATA LOCAL INFILE '../daysbookingjoinbuffer.txt' REPLACE INTO TABLE totalInventoryJoin FIELDS TERMINATED BY ',' lines terminated by '|\n';
-//   LOAD DATA LOCAL INFILE '../bookingbuffer.txt' REPLACE INTO TABLE bookings FIELDS TERMINATED BY ',' lines terminated by '|\n';
-//   COMMIT;`,
-//   function(err, row, fields) {
-//     if (err) { 
-//       console.log('ERROR UPLOADING TXT FILE TO DATABASE'); 
-//       throw err;
-//     }
-//       console.log('user_id SAVED TO DATABASE');
-//       fs.truncate('./bookingbuffer.txt', 0, function(){console.log('bookingbuffer cleared for rewrite')});
-//       fs.truncate('./daysbookingjoinbuffer.txt', 0, function(){console.log('daysbookingjoinbuffer cleared for rewrite')});
-//       callback();  
-//     })
+  connection.query(
+  `START TRANSACTION;
+  LOAD DATA LOCAL INFILE '/Users/macbookpro/projects/Inventory_Service/inventoryservice/daysbookingjoinbuffer.txt' REPLACE INTO TABLE totalInventoryJoin FIELDS TERMINATED BY ',' lines terminated by '|\n';
+  LOAD DATA LOCAL INFILE '/Users/macbookpro/projects/Inventory_Service/inventoryservice/bookingbuffer.txt'         REPLACE INTO TABLE bookings           FIELDS TERMINATED BY ',' lines terminated by '|\n';
+  COMMIT;`,
+  function(err, row, fields) {
+    if (err) { 
+      console.log('ERROR UPLOADING TXT FILE TO DATABASE', err); 
 
-// }
+    }
+      // console.log('txt file data SAVED TO DATABASE123');
+      fs.truncate('./bookingbuffer.txt', 0, function(){console.log('bookingbuffer.txt cleared for rewrite')});
+      fs.truncate('./daysbookingjoinbuffer.txt', 0, function(){console.log('daysbookingjoinbuffer.txt cleared for rewrite')});
+
+      // callback();  
+    })
+
+}
 
 
 
@@ -262,8 +263,7 @@ var readtest = function (callback) {
   var roll = 1 + (Math.floor(Math.random() * 5));
   connection.query(
 
-    `
-    select date_id from totalInventoryJoin where listing_uuid = ${roll};`,
+    `select date_id from totalInventoryJoin where listing_uuid = ${roll};`,
     function (err, row, fields) {
       if (err) {
         console.log('ERROR READ TESTING');
